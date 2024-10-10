@@ -34,9 +34,6 @@
                     "path": "../Core/Src/gpio.c"
                   },
                   {
-                    "path": "../Core/Src/i2c.c"
-                  },
-                  {
                     "path": "../Core/Src/spi.c"
                   },
                   {
@@ -57,12 +54,6 @@
               {
                 "name": "Dsp",
                 "files": [
-                  {
-                    "path": "../Drivers/Dsp/oledfont.c"
-                  },
-                  {
-                    "path": "../Drivers/Dsp/OLEDBuff.c"
-                  },
                   {
                     "path": "../Drivers/Dsp/lcd.c"
                   },
@@ -178,7 +169,11 @@
   },
   "targets": {
     "RTOS": {
-      "excludeList": [],
+      "excludeList": [
+        "<virtual_root>/Application/User/Dsp/OLEDBuff.c",
+        "<virtual_root>/Application/User/Dsp/oledfont.c",
+        "<virtual_root>/Application/User/Core/i2c.c"
+      ],
       "toolchain": "AC5",
       "compileConfig": {
         "cpuType": "Cortex-M7",
@@ -293,19 +288,31 @@
         },
         "options": "null"
       },
-      "uploader": "JLink",
+      "uploader": "STLink",
       "uploadConfig": {
         "bin": "",
-        "baseAddr": "",
-        "cpuInfo": {
-          "vendor": "null",
-          "cpuName": "null"
-        },
-        "proType": 1,
-        "speed": 8000,
+        "proType": "SWD",
+        "resetMode": "default",
+        "runAfterProgram": true,
+        "speed": 4000,
+        "address": "0x8000000",
+        "elFile": "None",
+        "optionBytes": ".eide/rtos.st.option.bytes.ini",
         "otherCmds": ""
       },
-      "uploadConfigMap": {},
+      "uploadConfigMap": {
+        "JLink": {
+          "bin": "",
+          "baseAddr": "",
+          "cpuInfo": {
+            "vendor": "null",
+            "cpuName": "null"
+          },
+          "proType": 1,
+          "speed": 8000,
+          "otherCmds": ""
+        }
+      },
       "custom_dep": {
         "name": "default",
         "incList": [
